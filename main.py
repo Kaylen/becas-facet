@@ -3,6 +3,7 @@
 from urllib.request import urlopen
 from dateutil.parser import parse as dateParser
 import subprocess
+import time
 
 def main():
     #Reading raw data from website
@@ -39,4 +40,6 @@ def main():
         f.close()
 
 if __name__ == "__main__":
-    main()
+    while True:
+        main()
+        time.sleep(300)
