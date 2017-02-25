@@ -9,6 +9,10 @@ def main():
     data = urlopen(url)
     text = data.read().decode('utf-8')
 
+    title = text[text.find("entry-title")+13:]
+    title = title[title.find(">")+1:title.find("</a>")]
+    
+
     #Getting ISO 8601 format date
     text = text[text.find("datetime"):text.find("</time")]
     text = text[text.find("\"")+1:text.find("\">")]
@@ -28,7 +32,7 @@ def main():
     lastdate = dateParser(f.read())
 
     if date > lastdate:
-        print("New beca")
+        print(title)
         f = open("last","w")
         f.write(text)
         f.close()
