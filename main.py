@@ -2,6 +2,7 @@
 
 from urllib.request import urlopen
 from dateutil.parser import parse as dateParser
+import subprocess
 
 def main():
     #Reading raw data from website
@@ -11,7 +12,7 @@ def main():
 
     title = text[text.find("entry-title")+13:]
     title = title[title.find(">")+1:title.find("</a>")]
-    
+
 
     #Getting ISO 8601 format date
     text = text[text.find("datetime"):text.find("</time")]
@@ -32,7 +33,7 @@ def main():
     lastdate = dateParser(f.read())
 
     if date > lastdate:
-        print(title)
+        subprocess.call(['notify-send',"Facet Informa",title])
         f = open("last","w")
         f.write(text)
         f.close()
