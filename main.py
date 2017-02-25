@@ -8,9 +8,11 @@ import time
 def main():
     #Reading raw data from website
     url = "http://www.facet.unt.edu.ar/facetinforma/category/becas/"
-    data = urlopen(url)
-    text = data.read().decode('utf-8')
-
+    try:
+        data = urlopen(url)
+        text = data.read().decode('utf-8')
+    except:
+        return
     title = text[text.find("entry-title")+13:]
     title = title[title.find(">")+1:title.find("</a>")]
 
